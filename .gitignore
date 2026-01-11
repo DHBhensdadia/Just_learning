@@ -1,0 +1,12 @@
+# Mac System Files
+.DS_Store
+
+# C++ Compiled Files (The "Chaos" and "CP" output files)
+*.o
+*.out
+*.exe
+build/
+
+# IDE specific folders
+.vscode/
+.idea/
