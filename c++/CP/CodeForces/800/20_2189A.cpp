@@ -9,58 +9,37 @@ int main(){
         int n, h, l;
         cin >> n >> h >> l;
         
+        vector<int> v(n);
+        for(auto &i : v){
+            cin >> i;
+        }
+    
         if (n & 1){
-            vector<int> v(n);
-            for(auto &i : v){
-                cin >> i;
-            }
-
             auto it = max_element(v.begin(), v.end());
             if (it != v.end()) v.erase(it);
+            n--;
+        }
 
-            set<int> s;
-            for(auto i : v){
-                s.insert(i);
+        // same , diff calculator
+        int small = h < l ? h : l;
+        int big = h < l ? l : h;
+
+        int same = 0, diff = 0;
+        
+        for(int i = 0; i < n; i++){
+            if(v[i] <= small){
+                same++; 
+            }else if (v[i] <= big){
+                diff++;
             }
+        }
 
-            int row_el{0};
-            int col_el{0};
-
-            for (auto i : s){
-                if (i <= h){
-                    row_el++;
-                }
-                if(i <= l){
-                    col_el++;
-                }
-            }
-
-            int diff_ele = abs(row_el - col_el);            
-            
-            cout << (min(row_el, col_el) + diff_ele*min(row_el, col_el)) << endl;
+        if (same >= diff){
+            cout << ((same - diff) / 2 + diff) << endl;
         }else {
-            set<int> s;
-            for(int i = 0; i < n; i++){
-                int temp;
-                cin >> temp;
-                s.insert(temp);
-            }
-
-            int row_el{0};
-            int col_el{0};
-
-            for (auto i : s){
-                if (i <= h){
-                    row_el++;
-                }
-                if(i <= l){
-                    col_el++;
-                }
-            }
-
-            int diff_ele = (row_el > col_el ? row_el-col_el : row_el-col_el);
-            
-            cout << (min(row_el, col_el) + diff_ele*min(row_el, col_el)) << endl;
+            cout << same << endl;
         }
     }
+
+    return 0;
 }
