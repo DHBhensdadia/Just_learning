@@ -1,26 +1,42 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
-void add(string &bit);
 
 int main(){
-    int n;
-    cin >> n;
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
 
-    string bit;
-    for (int i = 0; i < n; i++){
-        bit.push_back('0');
-    }
-    cout << bit << endl;
+    int n; 
+    cin >> n; 
 
-    int times = pow(2, n);
-    for (int i = 1; i < times; i++){
-        add(bit);
-        cout << bit << endl;
+    for(int i = 0; i < n; i++){
+        cout << 0;
     }
+    cout << endl;
+
+    for (int i = 1; i < pow(2, n); i++){
+        int de = i;
+        string binary;
+        while (de != 0){
+            binary.push_back(de%2 + '0');
+            de /= 2;
+        } 
+
+        reverse(binary.begin(), binary.end());
+
+        int sufix0 = n - binary.size();
+        for(int j = 0; j < sufix0; j++){
+            cout << 0;
+        }
+
+        cout << binary[0];
+        int gray_size = binary.size();
+        for(int j = 1; j < gray_size ;j++){
+            cout << ((binary[j - 1] - '0') ^ (binary[j] - '0'));
+        }
+        cout << endl;
+
+    }
+
 }
 
-void add(string &bit){
-    
-}
