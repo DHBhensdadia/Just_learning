@@ -121,18 +121,12 @@ erDiagram
 ### <img src=".github/assets/icon-demo.svg" width="18" height="18" alt=""/> &nbsp; Demo
 
 <p align="center">
-  <video src="https://github.com/user-attachments/assets/PASTE-ID-HERE" width="100%" controls></video>
+  <a href="https://youtu.be/Kt-FjpAB2Vg">
+    <img src="https://img.youtube.com/vi/Kt-FjpAB2Vg/maxresdefault.jpg" alt="GymFlow Demo Video" width="680"/>
+  </a>
+  <br/>
+  <sub>▶ Click to watch the full demo on YouTube</sub>
 </p>
-
-<!--
-  TODO (one-time, after first push):
-  1. Go to  https://github.com/Celestial-Coder-DHB/Just_learning/issues/new
-  2. Drag-and-drop  docs/demo.mp4  into the comment box
-  3. Wait for upload to finish — GitHub generates a URL like:
-     https://github.com/user-attachments/assets/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-  4. Copy that URL and replace  PASTE-ID-HERE  in the <video> tag above
-  5. Commit the change — you don't need to submit the issue
--->
 
 <br/>
 
