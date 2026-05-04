@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="36" fill="none">
+  <!-- All monochrome pill badges, evenly spaced, centered -->
+
+  <!-- PHP -->
+  <rect x="130" y="4" width="52" height="28" rx="14" fill="none" stroke="#CCCCCC" stroke-width="1"/>
+  <text x="156" y="23" font-family="-apple-system,'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#888888" text-anchor="middle" font-weight="500">PHP</text>
+
+  <!-- MySQL -->
+  <rect x="196" y="4" width="62" height="28" rx="14" fill="none" stroke="#CCCCCC" stroke-width="1"/>
+  <text x="227" y="23" font-family="-apple-system,'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#888888" text-anchor="middle" font-weight="500">MySQL</text>
+
+  <!-- XAMPP -->
+  <rect x="272" y="4" width="66" height="28" rx="14" fill="none" stroke="#CCCCCC" stroke-width="1"/>
+  <text x="305" y="23" font-family="-apple-system,'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#888888" text-anchor="middle" font-weight="500">XAMPP</text>
+
+  <!-- HTML -->
+  <rect x="352" y="4" width="56" height="28" rx="14" fill="none" stroke="#CCCCCC" stroke-width="1"/>
+  <text x="380" y="23" font-family="-apple-system,'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#888888" text-anchor="middle" font-weight="500">HTML</text>
+
+  <!-- CSS -->
+  <rect x="422" y="4" width="48" height="28" rx="14" fill="none" stroke="#CCCCCC" stroke-width="1"/>
+  <text x="446" y="23" font-family="-apple-system,'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#888888" text-anchor="middle" font-weight="500">CSS</text>
+
+  <!-- JavaScript -->
+  <rect x="484" y="4" width="86" height="28" rx="14" fill="none" stroke="#CCCCCC" stroke-width="1"/>
+  <text x="527" y="23" font-family="-apple-system,'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#888888" text-anchor="middle" font-weight="500">JavaScript</text>
+
+  <!-- phpMyAdmin -->
+  <rect x="584" y="4" width="100" height="28" rx="14" fill="none" stroke="#CCCCCC" stroke-width="1"/>
+  <text x="634" y="23" font-family="-apple-system,'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#888888" text-anchor="middle" font-weight="500">phpMyAdmin</text>
+
+</svg>

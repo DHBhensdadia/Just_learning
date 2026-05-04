@@ -10,3 +10,17 @@ build/
 # IDE specific folders
 .vscode/
 .idea/
+
+# PHP & Web
+vendor/
+*.log
+*.cache
+.env
+.env.local
+.env.*.local
+
+# Editor temp files
+tempCodeRunnerFile*
+*.swp
+*.swo
+*~

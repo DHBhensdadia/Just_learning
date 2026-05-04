@@ -1,0 +1,36 @@
+# === OS Generated ===
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# === IDE / Editor ===
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# === PHP ===
+vendor/
+composer.lock
+*.log
+*.cache
+
+# === Environment ===
+.env
+.env.local
+.env.*.local
+
+# === Build / Temp ===
+node_modules/
+*.bak
+*.tmp
+*.temp
+tempCodeRunnerFile*

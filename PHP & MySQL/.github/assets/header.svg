@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="160" fill="none">
+  <rect width="800" height="160" rx="12" fill="#FAFAFA"/>
+  <rect x="0.5" y="0.5" width="799" height="159" rx="11.5" stroke="#EBEBEB" fill="none"/>
+
+  <!-- Left accent bar -->
+  <rect x="32" y="40" width="3" height="80" rx="1.5" fill="#1a1a1a"/>
+
+  <!-- Title -->
+  <text x="52" y="72" font-family="Georgia,'Times New Roman',serif" font-size="36" font-weight="400" fill="#1a1a1a" letter-spacing="-0.5">GymFlow</text>
+
+  <!-- Subtitle line 1 -->
+  <text x="52" y="98" font-family="-apple-system,'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="13" fill="#999999" letter-spacing="0.3">Gym Management System</text>
+
+  <!-- Subtitle line 2 -->
+  <text x="52" y="116" font-family="-apple-system,'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#BBBBBB" letter-spacing="0.2">PHP · MySQL · XAMPP</text>
+
+  <!-- Right side minimal dumbbell icon -->
+  <!-- Left weight plate -->
+  <rect x="660" y="62" width="8" height="36" rx="2" fill="none" stroke="#D4D4D4" stroke-width="1.2"/>
+  <!-- Left inner plate -->
+  <rect x="672" y="68" width="6" height="24" rx="1.5" fill="none" stroke="#D4D4D4" stroke-width="1.2"/>
+  <!-- Bar -->
+  <line x1="682" y1="80" x2="718" y2="80" stroke="#D4D4D4" stroke-width="1.2" stroke-linecap="round"/>
+  <!-- Right inner plate -->
+  <rect x="722" y="68" width="6" height="24" rx="1.5" fill="none" stroke="#D4D4D4" stroke-width="1.2"/>
+  <!-- Right weight plate -->
+  <rect x="732" y="62" width="8" height="36" rx="2" fill="none" stroke="#D4D4D4" stroke-width="1.2"/>
+
+</svg>
