@@ -42,7 +42,7 @@ class Array {
     void append(T val) {
         if(length < size){
             arr[length] = val;
-            lenght++;
+            length++;
         }
     }
 
@@ -268,3 +268,8 @@ class Array {
     }
 
 };
+
+int main(){
+
+    return 0;
+}
