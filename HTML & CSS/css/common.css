@@ -1,0 +1,277 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap');
+
+
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* the defaults */
+body {
+  font-family: 'Lora', Georgia, 'Times New Roman', serif;   
+  background-color: #FAF6EE;   
+  color: #3A2520;               
+  font-size: 0.95rem;     
+  line-height: 1.85;        
+  min-height: 100vh;         
+  overflow-x: hidden;       
+}
+
+/* Thin strip at the very top of every page.*/
+body::before {
+  content: "";
+  display: block;
+  height: 3px;
+  background: linear-gradient(90deg,
+      #B8943E 0%,        
+      #7C2D3A 30%,       
+      #7C2D3A 70%,     
+      #B8943E 100%    
+    );
+}
+
+/* All headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', Georgia, serif;   
+  color: #2A1610;  
+  line-height: 1.3;
+  font-weight: 600; 
+}
+
+/* All links -remove underline, use burgundy color */
+a {
+  text-decoration: none;
+  color: #7C2D3A;   /* burgundy */
+}
+
+
+a:hover {
+  color: #5E1F2B; 
+}
+
+/* Make images fit their container */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Remove bullet points from lists */
+ul {
+  list-style: none;
+}
+
+
+/* ================================================================
+   NAVIGATION BAR
+   ================================================================ */
+
+/* The navbar container */
+.navbar {
+  position: sticky;              
+  top: 0;
+  z-index: 1000;                 
+  background: rgba(250, 246, 238, 0.95);   
+  border-bottom: 1px solid #E2D8C5;        
+  padding: 0.9rem 2rem;
+}
+
+/* Centers the nav links and limits their width */
+.nav-container {
+  max-width: 900px;
+  margin: 0 auto;               
+  display: flex;                
+  justify-content: center;       
+  align-items: center;
+  gap: 0.25rem;                 
+  flex-wrap: wrap;              
+}
+
+/* Individual nav link styles */
+.nav-container a {
+  color: #8C7468;              
+  padding: 0.45rem 0.75rem;
+  font-size: 0.75rem;          
+  font-weight: 500;
+  font-family: 'Lora', Georgia, serif;
+  letter-spacing: 0.3px;
+  position: relative;            
+}
+
+/* Animated underline. on hover */
+.nav-container a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;                     
+  height: 1.5px;
+  background: #7C2D3A;          
+  transform: translateX(-50%);   
+  transition: width 0.2s ease;   
+}
+
+/* Show the underline on hover or on the active (current) page link */
+.nav-container a:hover::after,
+.nav-container a.active::after {
+  width: 70%;
+}
+
+/* Change link text color on hover */
+.nav-container a:hover {
+  color: #7C2D3A;   
+}
+
+/* Active link */
+.nav-container a.active {
+  color: #7C2D3A;   
+  font-weight: 600;
+}
+
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+
+.footer {
+  background: #F0EAD6;                 
+  border-top: 1px solid #E2D8C5;       
+  padding: 3rem 2rem;
+  margin-top: 7rem;                    
+  text-align: center;
+}
+
+/* Limits footer content width for readability */
+.footer-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Footer heading  */
+.footer h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+/* Footer paragraphs (email, phone, location) */
+.footer p {
+  color: #6D554A;   /* muted brown */
+  font-size: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Footer navigation links in a row */
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Individual footer link */
+.footer-links a {
+  color: #8C7468;   /* warm grey-brown */
+  padding: 0.25rem 0.5rem;
+  font-size: 0.65rem;   /* tiny text */
+  font-family: 'Lora', Georgia, serif;
+}
+
+.footer-links a:hover {
+  color: #7C2D3A;   /* burgundy */
+}
+
+/* Copyright line at the bottom */
+.footer-bottom {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #E2D8C5;   /* warm beige separator */
+  color: #8C7468;
+  font-size: 0.65rem;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+
+/* ================================================================
+   INNER PAGE BUILDING BLOCKS
+   ================================================================ */
+
+/* Centers page content and limits width to 700px */
+.page-wrapper {
+  max-width: 700px;
+  margin: 0 auto;       
+  padding: 3rem 2rem;
+}
+
+/* Wider version (900px) for pages with grids like hobbies */
+.page-wrapper-wide {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+/* Big heading at the top of every inner page */
+.page-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 3rem;            
+  font-weight: 700;
+  font-style: italic;
+  color: #2A1610;              
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+/* Bordered card — the main container for page content */
+.content-card {
+  border: 1px solid #E2D8C5;  
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Card heading */
+.content-card h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #2A1610;   
+}
+
+/* Card body text */
+.content-card p {
+  color: #6D554A;  
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+/* Bold labels inside cards show in gold (e.g. "University:", "Company:") */
+.content-card strong {
+  color: #B8943E;   
+}
+
+
+/* ================================================================
+   MOBILE LAYOUT
+   ================================================================ */
+
+@media (max-width: 768px) {
+
+  /* Navbar links get smaller on mobile */
+  .nav-container a {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.65rem;
+  }
+
+  /* Less side padding on inner pages */
+  .page-wrapper,
+  .page-wrapper-wide {
+    padding: 2rem 1rem;
+  }
+}

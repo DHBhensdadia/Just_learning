@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback — Devansh</title>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/feedback.css">
+</head>
+<body>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html">Home</a>
+      <a href="education.html">Education</a>
+      <a href="experience.html">Experience</a>
+      <a href="hobbies.html">Hobbies</a>
+      <a href="quote.html">Quote</a>
+      <a href="contact.html">Contact</a>
+      <a href="feedback.html" class="active">Feedback</a>
+    </div>
+  </nav>
+
+  <!-- PAGE CONTENT -->
+  <main class="page-wrapper">
+
+    <h1 class="page-title">Feedback</h1>
+
+    <div class="content-card">
+
+      <h2>Share Your Thoughts</h2>
+
+      <p>
+        Your feedback helps me improve this portfolio. Rate the design,
+        tell me what sections you liked, and share any suggestions.
+        Fields marked with <strong>*</strong> are required.
+      </p>
+
+      <!-- ──────────────────────────────────────────────────────────
+           THE FORM
+           ────────────────────────────────────────────────────────── -->
+      <form action="#" method="post" id="feedback-form">
+
+
+        <!-- FIELDSET 1: -->
+        <fieldset>
+          <legend>About You</legend>
+
+          <!-- Name -->
+          <div class="form-group">
+            <label for="feedback-name">Your Name *</label>
+            <input
+              type="text"
+              id="feedback-name"
+              name="name"
+              placeholder="e.g. Devansh Bhensdadia"
+              required
+            >
+          </div>
+
+          <!-- Email  -->
+          <div class="form-group">
+            <label for="feedback-email">Your Email *</label>
+            <input
+              type="email"
+              id="feedback-email"
+              name="email"
+              placeholder="e.g. dev@example.com"
+              required
+            >
+          </div>
+
+          <!--Website-->
+          <div class="form-group">
+            <label for="feedback-website">Your Website</label>
+            <input
+              type="url"
+              id="feedback-website"
+              name="website"
+              placeholder="e.g. https://devansh.dev"
+            >
+            <small class="form-hint">Optional — share your portfolio or blog</small>
+          </div>
+
+        </fieldset>
+
+
+        <!-- FIELDSET 2: -->
+        <fieldset>
+          <legend>Rate This Portfolio</legend>
+
+          <!-- Overall Rating -->
+          <div class="form-group">
+            <label for="feedback-rating">Overall Rating (1–10) *</label>
+            <input
+              type="number"
+              id="feedback-rating"
+              name="rating"
+              min="1"
+              max="10"
+              step="1"
+              placeholder="e.g. 8"
+              required
+            >
+            <small class="form-hint">1 = needs improvement, 10 = outstanding</small>
+          </div>
+
+          <!-- Design Satisfaction  -->
+          <div class="form-group">
+            <label for="feedback-design">Design Satisfaction</label>
+            <div class="range-wrap">
+              <span>0</span>
+              <input
+                type="range"
+                id="feedback-design"
+                name="design_score"
+                min="0"
+                max="100"
+                value="50"
+              >
+              <span>100</span>
+            </div>
+            <small class="form-hint">Drag the slider — left is poor, right is excellent</small>
+          </div>
+
+        </fieldset>
+
+
+        <!-- FIELDSET 3: -->
+        <fieldset>
+          <legend>How Did You Find This Site?</legend>
+
+          <div class="form-group">
+
+            <label class="option-label">
+              <input type="radio" name="referral" value="search_engine">
+              Search Engine (Google, Bing, etc.)
+            </label>
+
+            <label class="option-label">
+              <input type="radio" name="referral" value="social_media">
+              Social Media (LinkedIn, Twitter, etc.)
+            </label>
+
+            <label class="option-label">
+              <input type="radio" name="referral" value="friend">
+              Friend or Colleague Recommended
+            </label>
+
+            <label class="option-label">
+              <input type="radio" name="referral" value="university">
+              University / College
+            </label>
+
+            <label class="option-label">
+              <input type="radio" name="referral" value="other">
+              Other
+            </label>
+
+          </div>
+        </fieldset>
+
+
+        <!-- FIELDSET 4: -->
+        <fieldset>
+          <legend>Sections You Enjoyed</legend>
+
+          <div class="form-group">
+
+            <label class="option-label">
+              <input type="checkbox" name="enjoyed_sections" value="home">
+              Home (Hero Section)
+            </label>
+
+            <label class="option-label">
+              <input type="checkbox" name="enjoyed_sections" value="education">
+              Education
+            </label>
+
+            <label class="option-label">
+              <input type="checkbox" name="enjoyed_sections" value="experience">
+              Experience
+            </label>
+
+
+            <label class="option-label">
+              <input type="checkbox" name="enjoyed_sections" value="hobbies">
+              Hobbies
+            </label>
+
+            <label class="option-label">
+              <input type="checkbox" name="enjoyed_sections" value="quote">
+              Quote
+            </label>
+
+          </div>
+        </fieldset>
+
+
+
+        <!-- FIELDSET 5:  -->
+        <fieldset>
+          <legend>Your Message</legend>
+
+          <div class="form-group">
+            <label for="feedback-message">Detailed Feedback</label>
+            <textarea
+              id="feedback-message"
+              name="message"
+              placeholder="What did you like? What could be improved? Any suggestions for new sections or design changes?"
+              rows="6"
+            ></textarea>
+          </div>
+        </fieldset>
+
+
+        <!-- Submit Button  -->
+        <button type="submit">Send Feedback</button>
+
+      </form>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <h3>Devansh</h3>
+      <p>devansh@email.com · +91 98765 43210</p>
+      <p>India</p>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="education.html">Education</a>
+        <a href="experience.html">Experience</a>
+        <a href="hobbies.html">Hobbies</a>
+        <a href="quote.html">Quote</a>
+        <a href="contact.html">Contact</a>
+        <a href="feedback.html">Feedback</a>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Devansh</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

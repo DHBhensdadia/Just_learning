@@ -1,0 +1,178 @@
+
+/* Outer section — adds padding around the hero card */
+.hero-section {
+  padding: 3rem 2rem;
+}
+
+/* The card itself — two columns side by side */
+.hero-card {
+  max-width: 1000px;
+  margin-top: 6%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;                
+  border: 1px solid #E2D8C5;   
+  overflow: hidden;            
+}
+
+
+/* ----------------------------------------------------------------
+   LEFT COLUMN — Text Content
+   ---------------------------------------------------------------- */
+
+.hero-left {
+  flex: 1;                      
+  padding: 4.5rem 3rem;       
+  display: flex;
+  flex-direction: column;      
+  justify-content: center;      
+}
+
+/* "Hi, I am" greeting*/
+.hero-left .greeting {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.95rem;
+  color: #8C7468;              
+  font-style: italic;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.5px;
+}
+
+/* Main name heading */
+.hero-left h1 {
+  font-size: 3rem;              
+  font-weight: 800;             
+  color: #2A1610;               
+  line-height: 1.1;
+  letter-spacing: -1.5px;       
+  margin-bottom: 1rem;
+}
+
+/* Role subtitle */
+.hero-role {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
+  color: #7C2D3A;               
+  font-style: italic;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
+}
+
+/* Tagline with a gold left border */
+.hero-left .tagline {
+  color: #6D554A;              
+  font-size: 0.75rem;
+  font-style: italic;
+  margin-bottom: 4.5rem;
+  padding-left: 1rem;
+  border-left: 2px solid #B8943E;  
+  max-width: 380px;
+  line-height: 1.8;
+}
+
+
+/* ----------------------------------------------------------------
+   SOCIAL LINKS
+   ---------------------------------------------------------------- */
+
+.home-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* Each social link */
+.home-links a {
+  color: #6D554A;               
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;    
+}
+
+.home-links a:hover {
+  color: #7C2D3A;             
+}
+
+/* Gold dot separator between links */
+.home-links a:not(:first-child)::before {
+  content: "·";               
+  margin-right: 1.5rem;
+  color: #B8943E;              
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+
+/* ----------------------------------------------------------------
+   RIGHT COLUMN
+   ---------------------------------------------------------------- */
+
+.hero-right {
+  flex: 0 0 40%;                
+  background: #F0EAD6;         
+  display: flex;
+  align-items: flex-end;         
+  justify-content: center;
+  overflow: hidden;
+  min-height: 450px;
+}
+
+
+.hero-portrait {
+  width: 85%;
+  height: auto;
+  object-fit: contain;            
+  object-position: center bottom; /* anchor to bottom */
+  display: block;
+}
+
+
+/* ================================================================
+   MOBILE LAYOUT — 
+   ================================================================ */
+
+@media (max-width: 768px) {
+
+  .hero-section {
+    padding: 1.5rem 1rem;
+  }
+
+  /* Stack columns vertically */
+  .hero-card {
+    flex-direction: column;
+  }
+
+  /* Less padding, center text */
+  .hero-left {
+    padding: 3rem 1.5rem;
+    text-align: center;
+  }
+
+  /* Remove left border on tagline (looks odd when centered) */
+  .hero-left .tagline {
+    border-left: none;
+    padding-left: 0;
+    text-align: center;
+    margin: 0 auto 3rem;
+  }
+
+  .hero-left h1 {
+    letter-spacing: -0.5px;
+  }
+
+  /* Center social links */
+  .home-links {
+    justify-content: center;
+  }
+
+  /* Photo takes full width */
+  .hero-right {
+    flex: none;
+    min-height: 350px;
+    width: 100%;
+  }
+}

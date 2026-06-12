@@ -1,0 +1,59 @@
+
+/* ----------------------------------------------------------------
+   HOBBY GRID
+   ---------------------------------------------------------------- */
+
+.hobby-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* two equal columns */
+  gap: 1.5rem;                       /* space between cards */
+}
+
+
+/* ----------------------------------------------------------------
+   HOBBY CARD
+   ---------------------------------------------------------------- */
+
+.hobby-card {
+  border: 1px solid #E2D8C5;   
+  overflow: hidden;            
+}
+
+/* Hobby card image — fills full width, fixed height, cropped to fit */
+.hobby-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;             
+}
+
+/* Text area below the image */
+.hobby-info {
+  padding: 1.5rem;
+}
+
+/* Hobby name heading */
+.hobby-info h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #2A1610;               
+  margin-bottom: 0.5rem;
+}
+
+/* Hobby description text */
+.hobby-info p {
+  color: #6D554A;               
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+
+/* ================================================================
+   MOBILE LAYOUT
+   ================================================================ */
+
+@media (max-width: 768px) {
+
+  .hobby-grid {
+    grid-template-columns: 1fr;   /* single column on mobile */
+  }
+}
