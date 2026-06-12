@@ -1,0 +1,10 @@
+.quote-text {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: #2A1610;               /* dark brown */
+  line-height: 1.7;
+  padding-left: 1rem;
+  border-left: 2px solid #B8943E;   /* antique gold left border */
+  margin-bottom: 1rem;
+}

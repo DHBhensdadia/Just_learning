@@ -1,0 +1,31 @@
+
+/* Table fills the full width of the card */
+.content-card table {
+  width: 100%;
+  border-collapse: collapse;   /* merge cell borders into one line */
+  font-size: 0.95rem;
+}
+
+/* Table header cells */
+.content-card th {
+  text-align: left;
+  color: #B8943E;            
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.5rem 0.5rem;
+  border-bottom: 2px solid #E2D8C5;   
+}
+
+/* Table body cells */
+.content-card td {
+  padding: 0.5rem 0.5rem;
+  color: #3A2520;             
+  border-bottom: 1px solid #E2D8C5;   
+}
+
+/* Remove the bottom line from the last row */
+.content-card tbody tr:last-child td {
+  border-bottom: none;
+}
