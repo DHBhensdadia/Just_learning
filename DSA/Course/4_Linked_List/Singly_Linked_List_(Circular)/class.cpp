@@ -22,6 +22,8 @@ class CircularLinkedList
 
     void clear()
     {
+        if (head == nullptr){ return;}
+
         Node<T> *p = head->next;
         while (p != head)
         {
@@ -62,6 +64,11 @@ public:
     // 1. Display
     void display()
     {
+        if (head == nullptr) {
+            cout << "List is empty" << endl;
+            return;
+        }
+
         cout << "Elements are : ";
         cout << head->data;
         auto t = head;
@@ -101,6 +108,12 @@ public:
     // 2. Insert
     void insert(Node<T> *p, int index)
     {
+        if (head == nullptr) {
+            p->next = p;
+            head = p;
+            return;
+        }
+
         auto t = head;
         if (t != 0)
         {
@@ -119,6 +132,8 @@ public:
 
     // 3. Deletion
     void delete_(int index) {
+        if (head == nullptr) {return;}
+
         auto t = head;
         if (t != 0)
         {

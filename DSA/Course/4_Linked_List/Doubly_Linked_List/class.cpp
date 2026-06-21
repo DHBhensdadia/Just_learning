@@ -131,16 +131,19 @@ class DoublyLL {
 
     // 4. Reverse
     void reverse () {
+        if(head->next == nullptr || head == nullptr){ return;}
+
         Node<T> * p = head;
-        while ( p != nullptr) {
+        while ( 1 ) {
             auto temp = p->next;
             p->next = p->prev;
             p->prev = temp;
-            p = p->prev;
 
-            if (p->next == nullptr){
+            if(p->prev == nullptr) {
                 head = p;
                 break;
+            }else {
+                p = p->prev;
             }
         }
     }
