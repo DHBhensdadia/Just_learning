@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <stack>
 using namespace std;
 
 template<typename T>
@@ -484,6 +485,50 @@ class LinkedList {
         return false;
     }
 
+
+    // Challenges
+    // 1 : Finding middle element of a linked list
+    Node<T> * middle () {
+        auto p = head;
+        auto q = head;
+
+        while (q != nullptr) {
+            q = (q==nullptr) ? (nullptr) : q->next;
+            q = (q==nullptr) ? (nullptr) : q->next;
+            p = (q==nullptr) ? p : p->next;
+        }
+
+        return p;
+    }
+    // 2 : Finding intersecting point of two linked list
+    Node<T> * Intersection (LinkedList<T> * dif) {
+        auto p = head;
+        auto q = dif->getHead();
+
+        stack<Node<T> *> ps;
+        stack<Node<T> *> qs;
+
+        while (p!=nullptr) {
+            ps.push(p);
+            p = p->next;
+        }
+        while (q != nullptr){
+            qs.push(q);
+            q = q->next;
+        }
+
+        Node<T> * t = nullptr;
+        while (!ps.empty() && !qs.empty() && ps.top() == qs.top()) {
+            t = ps.top();
+            ps.pop();
+            qs.pop();
+        }
+
+        return t;
+    }
+
+
+
     static LinkedList<T> createFromArray(T * arr, int size) {
         LinkedList<T> list;
         if (size <= 0) {
@@ -622,5 +667,20 @@ int main () {
     // 14.
         cout << endl << "14." << endl;
     cout << "Is the linked list looped? " << (ll.checkLoop() ? "Yes" : "No") << endl;                                       // O(n)
+
+    // Challenges
+    // 1
+        cout << endl << "Challenge 1." << endl;
+    Node<int> * middleNode = ll.middle();
+    cout << "Middle element is : " << (middleNode ? to_string(middleNode->data) : "List is empty") << endl; // Display middle element.         // O(n)
+    // 2
+        cout << endl << "Challenge 2." << endl;
+    int arr4[] = {5, 10, 15, 20, 25};
+    int size4 = sizeof(arr4)/sizeof(int);
+    LinkedList<int> ll4 = LinkedList<int>::createFromArray(arr4, size4);   
+    Node<int> * intersectionNode = ll.Intersection(&ll4);
+    cout << "Intersecting element is : " << (intersectionNode ? to_string(intersectionNode->data) : "No intersection") << endl; // Display intersecting element.         // O(n)
+
+
     return 0;
 }
