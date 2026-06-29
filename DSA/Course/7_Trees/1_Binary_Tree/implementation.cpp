@@ -1,6 +1,4 @@
 #include <bits/stdc++.h>
-#include <ios>
-#include <stack>
 using namespace std;
 
 template<typename T>
@@ -40,17 +38,18 @@ class Tree {
     }
 
 public :
-    // constructors
+    // constructors -- destructor
     Tree () { root = nullptr; }
-
-    // destructor
     ~Tree () {
         Delete (root);
         if (root != nullptr) delete root;
     }
 
-
     // Operations on Tree
+
+
+
+    // Tree creation
 
     // 1. creation of costom binary tree via user input
     void createTree () {
@@ -60,7 +59,6 @@ public :
         T rt;
         cin >> rt;
         if (rt == -1) return;
-
         root = new Node<T>(rt);
 
         queue<Node<T> *> adn;
@@ -92,37 +90,107 @@ public :
         return;
     }
 
-    // 2. All display methodologies
 
-    // Wrapper methods to start from root
-    void preorder() { preorder(root); cout << endl; }
-    void inorder() { inorder(root); cout << endl; }
-    void postorder() { postorder(root); cout << endl; }
 
+    // 2-3 : All Traversal methodologies
+
+    // 2 Traversers using recursion
     // 2.1 : preorder
+    void preorder() { preorder(root); cout << endl; }
     void preorder (Node<T> * u) {
         if (u == nullptr) return;
+
         cout << ' ' << u->data;
         preorder(u->left);
         preorder(u->right);
     }
     // 2.2 : inorder
+    void inorder() { inorder(root); cout << endl; }
     void inorder (Node<T> * u) {
         if (u == nullptr) return;
+
         inorder(u->left);
         cout << ' ' << u->data;
         inorder(u->right);
     }
     // 2.3 : postorder
+    void postorder() { postorder(root); cout << endl; }
     void postorder (Node<T> * u) {
         if (u == nullptr) return;
+
         postorder(u->left);
         postorder(u->right);
         cout << ' ' << u->data;
     }
-    // 2.4 : levelorder
+
+    // 3 Traversers using Itretion
+    // 3.1 : Preorder
+    void iPreorder () {
+        if (root == nullptr) { return; }
+
+        stack<Node<T> *> nps;
+        auto t = root;
+
+        while (t != nullptr || !nps.empty()) {
+            if (t != nullptr) {
+                cout << " " << t->data;
+                nps.push(t);
+                t = t->left;
+            } else {
+                t = nps.top();
+                nps.pop();
+                t = t->right;
+            }
+        }
+    }
+    // 3.2 : Inorder
+    void iInorder () {
+        if (root == nullptr) { return; }
+
+        stack<Node<T> *> nps;
+        auto t = root;
+
+        while (t != nullptr || !nps.empty()) {
+            if (t != nullptr) {
+                nps.push(t);
+                t = t->left;
+            } else {
+                t = nps.top();
+                cout << " " << t->data;
+                nps.pop();
+                t = t->right;
+            }
+        }
+    }
+    // 3.3 : Postorder
+    void iPostorder () {
+        if (root == nullptr) { return; }
+
+        Node<T> * t = root;
+        Node<T> * last_visited;
+        stack<Node<T> *> nps;
+
+        while (t != nullptr || !nps.empty()) {
+            if (t != nullptr) {
+                nps.push(t);
+                t = t->left;
+            } else {
+                auto to_ckeck = nps.top();
+
+                if (to_ckeck->right == nullptr || to_ckeck->right == last_visited) {
+                    cout << ' ' << to_ckeck->data;
+                    last_visited = to_ckeck;
+                    nps.pop();
+                } else {
+                    t = to_ckeck->right;
+                }
+            }
+        }
+    }
+    // 3.4 : levelorder
     void levelorder () {
         if (root == nullptr) return;
+
         queue<Node<T> *> curr;
         queue<Node<T> *> next;
         curr.push(root);
@@ -150,7 +218,85 @@ public :
         }
     }
 
-    // 3 : hight
+
+
+    // 4-7 : Tree Statistics using Recursion
+
+    // 4 : count
+    int noNodes () { return nn(root); }
+    int nn(Node<T> * u) {
+        if (u == nullptr) { return 0;}
+
+        int x = nn(u->left);
+        int y = nn(u->right);
+
+        return x + y + 1;
+    }
+    // 5 : sum
+    T sumNodes () { return sn(root); }
+    T sn(Node<T> *u) {
+        if (u == nullptr) { return T(); }
+
+        T x = sn(u->left);
+        T y = sn(u->right);
+
+        return x + y + u->data;
+    }
+    // 6 : count with degree
+    // 6.1 : degree zero
+    int noZeroDegree () { return nzd(root); }
+    int nzd (Node<T> * u) {
+        if (u == nullptr) { return 0; }
+
+        int x = nzd(u->left);
+        int y = nzd(u->right);
+
+        if (u->left == nullptr && u->right == nullptr) {
+            return x + y + 1;
+        } else {
+            return x + y;
+        }
+    }
+    // 6.2 : degree one
+    int noOneDegree () { return nod(root); }
+    int nod (Node<T> * u) {
+        if (u == nullptr) { return 0; }
+
+        int x = nod(u->left);
+        int y = nod(u->right);
+
+        if ((u->left == nullptr) ^ (u->right == nullptr)) {
+            return x + y + 1;
+        } else {
+            return x + y;
+        }
+    }
+    // 6.3 : degree two
+    int noTwoDegree () { return ntd(root); }
+    int ntd (Node<T> * u) {
+        if (u == nullptr) { return 0; }
+
+        T x = ntd(u->left);
+        T y = ntd(u->right);
+
+        if ((u->left != nullptr) && (u->right != nullptr)) {
+            return x + y + 1;
+        } else {
+            return x + y;
+        }
+    }
+    // 6.4 : number of nullptrs
+    int noNullptr () { return null(root);  }
+    int null(Node<T> * u) {
+        if (u == nullptr) { return 1;}
+
+        int x = null(u->left);
+        int y = null(u->right);
+
+        return x + y;
+    }
+
+    // 7 : hight
     int hight() { return hight(root); }
     int hight (Node<T> * u) {
         if (u == nullptr) { return 0; }
@@ -169,26 +315,72 @@ public :
 int main () {
     Tree<int> t;
 
-    cout << "1. Creating Binary Tree" << endl;
+    cout << "Creation\n" << endl;
+    cout << "\n1. Creating Binary Tree" << endl;
     t.createTree();
 
 
-    cout << "\n2.1 : Preorder Traversal" << endl;
+    cout << "\n\nTraversals" << endl;
+
+    cout << "\n2 : recursive Traversals" << endl;
+
+    cout << "2.1 : Preorder " << endl;
     cout << "Data :";
     t.preorder();
 
-    cout << "\n2.2 : Inorder Traversal" << endl;
+    cout << "2.2 : Inorder " << endl;
     cout << "Data :";
     t.inorder();
 
-    cout << "\n2.3 : Postorder Traversal" << endl;
+    cout << "2.3 : Postorder " << endl;
     cout << "Data :";
     t.postorder();
 
-    cout << "\n2.4 : Levelorder Traversal" << endl;
+    cout << "2.4 : Levelorder " << endl;
     t.levelorder();
 
-    cout << "\n3 : Height of Tree" << endl;
+
+    cout << "\n3 : Iterative Traversals" << endl;
+
+    cout << "3.1 : Preorder" << endl;
+    cout << "Data :";
+    t.iPreorder();
+
+    cout << "3.2 : Inorder " << endl;
+    cout << "Data :";
+    t.iInorder();
+
+    cout << "3.3 : Postorder " << endl;
+    cout << "Data :";
+    t.iPostorder();
+
+    cout << "3.4 : Levelorder " << endl;
+    t.levelorder();
+
+
+    cout << "\n\nTree Statistics" << endl;
+
+    cout << "\n4 : Count of Nodes" << endl;
+    cout << "Count : " << t.noNodes() << endl;
+
+    cout << "\n5 : Sum of Nodes" << endl;
+    cout << "Sum : " << t.sumNodes() << endl;
+
+    cout << "\n6 : Count of Nodes with Degree" << endl;
+
+    cout << "6.1 : Degree Zero" << endl;
+    cout << "Count : " << t.noZeroDegree() << endl;
+
+    cout << "6.2 : Degree One" << endl;
+    cout << "Count : " << t.noOneDegree() << endl;
+
+    cout << "6.3 : Degree Two" << endl;
+    cout << "Count : " << t.noTwoDegree() << endl;
+
+    cout << "6.4 : Count of nullptrs" << endl;
+    cout << "Count : " << t.noNullptr() << endl;
+
+    cout << "\n7 : Height of Tree" << endl;
     cout << "Hight : " << t.hight() << endl;
 
     return 0;
