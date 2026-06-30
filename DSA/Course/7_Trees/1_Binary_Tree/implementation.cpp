@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <vector>
 using namespace std;
 
 template<typename T>
@@ -88,6 +89,38 @@ public :
         }
 
         return;
+    }
+
+    // 8 : Creation of Binary Tree, provided preorder + inorder
+    void createTreeFromTraversal (vector<T> pre, vector<T> in) {
+        Delete (root);
+        if (root != nullptr) delete root;
+
+        root = cT(pre, in);
+    }
+    Node<T> * cT (vector<T> pre, vector<T> in) {
+
+        if (pre.empty() || in.empty()) {
+            return nullptr;
+        }
+
+
+        Node<T> * ans = new Node<T>;
+        T head = pre[0];
+        ans->data = head;
+
+        auto turn = find(in.begin(), in.end(), head);
+        vector<T> il(in.begin(), turn);
+        vector<T> ir(turn + 1, in.end());
+
+        int left_size = turn - in.begin();
+        vector<T> pl(pre.begin()+1, pre.begin()+1+left_size);
+        vector<T> pr(pre.begin()+1+left_size, pre.end());
+
+        ans->left = cT(pl, il);
+        ans->right = cT(pr, ir);
+
+        return (ans);
     }
 
 
@@ -315,13 +348,13 @@ public :
 int main () {
     Tree<int> t;
 
-    cout << "Creation\n" << endl;
+    cout << "Creation" << endl;
     cout << "\n1. Creating Binary Tree" << endl;
     t.createTree();
 
 
-    cout << "\n\nTraversals" << endl;
 
+    cout << "\n\nTraversals" << endl;
     cout << "\n2 : recursive Traversals" << endl;
 
     cout << "2.1 : Preorder " << endl;
@@ -358,6 +391,7 @@ int main () {
     t.levelorder();
 
 
+
     cout << "\n\nTree Statistics" << endl;
 
     cout << "\n4 : Count of Nodes" << endl;
@@ -382,6 +416,24 @@ int main () {
 
     cout << "\n7 : Height of Tree" << endl;
     cout << "Hight : " << t.hight() << endl;
+
+
+
+    cout << "\n8. Creating Binary Tree from Preorder + Inorder" << endl;
+
+    vector<int> pre = {1, 2, 4, 5, 3, 6, 7};
+    cout << "Preorder :";
+    for (auto x : pre) { cout << ' ' << x; }
+    cout << endl;
+    vector<int> in = {4, 2, 5, 1, 6, 3, 7};
+    cout << "Inorder  :";
+    for (auto x : in) { cout << ' ' << x; }
+    cout << endl;
+    Tree<int> t2;
+    t2.createTreeFromTraversal(pre, in);
+
+    cout << "Created Tree from Traversal" << endl;
+    t2.preorder();
 
     return 0;
 }
