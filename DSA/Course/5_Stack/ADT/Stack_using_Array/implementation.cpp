@@ -10,11 +10,16 @@ class Stack {
 
 public :
     // constructors
-    Stack () {}
+    Stack () : arr(nullptr), TOP(-1), size(0) {}
     Stack (int size) {
         arr = new T[size];
         this->size = size;
         TOP = -1;
+    }
+
+    // destructor
+    ~Stack () {
+        delete[] arr;
     }
 
     // Operations on abstrect data type
@@ -34,7 +39,6 @@ public :
         if (TOP == -1) {
             cout << "Stack underflow : failed to pop" << endl;
         } else {
-            arr[TOP] = 0;
             TOP--;
         }
     }
@@ -52,7 +56,7 @@ public :
     // 4. Peek
     T peek(int index) {
         int v_a = TOP + 1 - index;
-        if(v_a < 0) {
+        if(v_a < 0 || v_a > TOP) {
             cout << "Invalid index" << endl;
             return T() ;
         }
