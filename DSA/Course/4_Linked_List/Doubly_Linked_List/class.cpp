@@ -71,6 +71,10 @@ class DoublyLL {
 
     // 2. Insertion
     void insertAtIndex(Node<T> *node, int index) {
+        if (index < 0) {
+            delete node;
+            return;
+        }
         // case 1 : insertion at begining
         if (index == 0) {
             node->next = head;
@@ -87,6 +91,7 @@ class DoublyLL {
                 p = p->next;
             }
             if (p == nullptr) {
+                delete node;
                 return ;
             }
             node->next = p->next;
@@ -131,7 +136,7 @@ class DoublyLL {
 
     // 4. Reverse
     void reverse () {
-        if(head->next == nullptr || head == nullptr){ return;}
+        if(head == nullptr || head->next == nullptr){ return;}
 
         Node<T> * p = head;
         while ( 1 ) {

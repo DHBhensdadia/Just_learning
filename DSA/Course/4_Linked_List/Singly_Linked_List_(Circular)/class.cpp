@@ -88,6 +88,7 @@ public:
     }
     void rD(Node<T> *p)
     {
+        if (p == nullptr) { return; }
         static bool head_used = false;
 
         if (head_used == true && p == head)
@@ -107,7 +108,11 @@ public:
 
     // 2. Insert
     void insert(Node<T> *p, int index)
-    {
+    {   
+        if (index < 0) {
+            cout << "Invalid index" << endl;
+            return;
+        }
         if (head == nullptr) {
             p->next = p;
             head = p;
@@ -117,14 +122,20 @@ public:
         auto t = head;
         if (t != 0)
         {
-            while (--index)
-            {
-                t = t->next;
+            if (index != 0) {
+                while (--index)
+                {
+                    t = t->next;
+                }
+            } else {
+                while (t->next != head) {
+                    t = t->next;
+                }
             }
         }
         p->next = t->next;
         t->next = p;
-        if (p->next == head)
+        if (index == 0)
         {
             head = p;
         }
@@ -132,18 +143,34 @@ public:
 
     // 3. Deletion
     void delete_(int index) {
+        if (index < 0) {
+            cout << "Invalid index" << endl;
+            return;
+        }
         if (head == nullptr) {return;}
+        
 
         auto t = head;
         if (t != 0)
         {
-            while (--index)
-            {
-                t = t->next;
+            if (index != 0) {
+                while (--index)
+                {
+                    t = t->next;
+                }
+            } else {
+                while (t->next != head) {
+                    t = t->next;
+                }
             }
         }
 
         if (t->next == head) {
+            if (head->next == head) {
+                delete head;
+                head = nullptr;
+                return;
+            }
             auto temp = t->next;
             t->next = temp->next;
             delete temp;
