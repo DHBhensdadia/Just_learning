@@ -44,27 +44,36 @@ public:
         T root = av[0];
 
         av[0] = av[size-1];
+        av.pop_back();
+        size--;
 
-        int j = 1;
-        int i = 1;
+        int cur = 0;
+        int lc = 1;
+        int rc = 2;
+
         while (1) {
-            i=j*2;
-            if (i+1-1 < size) {
-                if (av[i-1] < av[i+1-1]){
-                    av[j-1] = av[i+1-1];
-                    j = i + 1;
+            int target;
+            if (rc < size) {
+                if (av[lc] < av[rc]) {
+                    target = rc;
                 } else {
-                    av[j-1] = av[i-1];
-                    j = i;
+                    target = lc;
                 }
-            } else if (i-1 < size) {
-                av[j-1] = av[i-1];
-                j = i;
+            } else if (lc < size) {
+                target = lc;
+            } else {
+                break;
+            }
+
+            if (av[target] > av[cur]) {
+                swap(av[target], av[cur]);
+                cur = target;
+                lc = (target+1)*2 - 1;
+                rc = (target+1)*2;
             } else {
                 break;
             }
         }
-        av.pop_back();
 
         return root;
     }

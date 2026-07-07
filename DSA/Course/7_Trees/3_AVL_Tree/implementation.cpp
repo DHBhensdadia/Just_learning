@@ -44,8 +44,8 @@ public :
     // Declaration of all methods
 
     // 1. Display
-    void iInorder (); // Fix: Typo iInorder
-    void rInorder (); // Fix: Typo rInorder
+    void iInorder (); 
+    void rInorder (); 
     void ri(Node<T> * u);
 
     // 2. Search
@@ -125,7 +125,6 @@ public :
             return true;
         }
 
-        // Fix: Use BST property to achieve O(log N) search instead of O(N)
         if (data < u->data) {
             return search(u->left, data);
         } else {
@@ -315,7 +314,6 @@ public :
 
         // special case
         if (e ->left == nullptr && e->right == nullptr) {
-            // Fix: No longer need the (e == root) hack since delete_ updates root!
             delete e;
             return nullptr;
         }
@@ -325,7 +323,6 @@ public :
         } else if (data > e->data) {
             e->right = rd_ (e->right, data);
         } else {
-            // Fix: Safely fetch heights to avoid Segmentation Fault on nullptr!
             int hl = (e->left != nullptr) ? e->left->hight : 0;
             int hr = (e->right != nullptr) ? e->right->hight : 0;
             

@@ -126,7 +126,6 @@ public :
     }
     // recursive
     void rInsert (T data) {
-        // Fix: Assign the result back to root so we don't leak memory on an empty tree
         root = ri(root, data);
     }
     Node<T> *ri (Node<T> * u, T data) {
@@ -155,7 +154,6 @@ public :
     // Deletion
     // recursive delete
     void delete_(T data) {
-        // Fix: Assign the result back to root so it updates if the root is deleted
         root = rDelete(root, data);
     }
     Node<T>* rDelete(Node<T>* p, T key) {
@@ -166,7 +164,6 @@ public :
 
         // leaf node condition
         if (p->left == nullptr && p->right == nullptr) {
-            // Fix: No longer need the (p == root) hack here!
             delete p;
             return nullptr;
         }
@@ -254,15 +251,11 @@ public :
                 s.emplace(p);
                 p = p->left;
             } else {
-                // Fix: Keep popping from the stack as long as the stack top is smaller than pre[i].
-                // This ensures we climb back up the tree to find the correct ancestor.
                 while(!s.empty() && s.top()->data < pre[i]) {
                     p = s.top();
                     s.pop();
                 }
-                // Once we find the correct ancestor, attach pre[i] as its right child
                 p->right = new Node<T>(pre[i]);
-                // Fix: Move the pointer forward so subsequent nodes attach to this new node!
                 p = p->right; 
             }
         }
