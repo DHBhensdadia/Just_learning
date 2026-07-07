@@ -106,6 +106,8 @@ class LinkedList {
         return ans;
     }
     T rMaximum (T ans, Node<T> * p) {
+        if (p == nullptr) return ans;
+
         if(p->next == nullptr) {
             if(p->data > ans) {
                 return p->data;
@@ -168,6 +170,8 @@ class LinkedList {
 
     // 5. Insertion oparation
     void insertAtIndex(Node<T> *node, int index) {
+        if (index < 0) return;
+
         // case 1 : insertion at begining
         if (index == 0) {
             node->next = head;
@@ -219,7 +223,7 @@ class LinkedList {
 
 
     // 7. Check if liked List id Shorted or not
-    bool isShorted () {
+    bool isSorted () {
         if (head == nullptr) {
             return true;
         }
@@ -230,7 +234,7 @@ class LinkedList {
         }
         return true;
     }
-    bool rIsShorted (Node<T> * p) {
+    bool rIsSorted (Node<T> * p) {
         if (p == nullptr || p->next == nullptr) {
             return true;
         }
@@ -239,11 +243,11 @@ class LinkedList {
             return false;
         }
 
-        return rIsShorted(p->next);
+        return rIsSorted(p->next);
     }
 
     // 8. Inserting in a sorted Linked list
-    void insertInShorted(Node<T> *node) {
+    void insertInSorted(Node<T> *node) {
         node->next = nullptr;
         // case 1 : no elements
         if (head == nullptr){
@@ -369,7 +373,7 @@ class LinkedList {
 
 
     // 12. Concatination of two linked list
-    void concatenate(Node<T> *second) {
+    void concatenate(Node<T> *&second) {
         if (second == nullptr) {
             return ;
         }
@@ -382,6 +386,7 @@ class LinkedList {
             p = p->next;
         }
         p->next = second;
+        second = nullptr;
     }
 
     // 13. Merging two sorted linked lists
@@ -389,14 +394,9 @@ class LinkedList {
         Node<T> *first = nullptr, *last = nullptr;
         Node<T> * p = head, * q = second;
 
-        if (p == nullptr) {
-            return q;
-        }
-        if (q == nullptr) {
-            return p;
-        }
+        if (p == nullptr && q == nullptr) return nullptr;
 
-        if (p->data > q->data) {
+        if (p == nullptr || (q != nullptr && p->data > q->data)) {
             first = new Node<T>(q->data);
             last = first;
             q = q->next;
@@ -430,7 +430,7 @@ class LinkedList {
 
         return first;
     }
-    void merge(Node<T> *second){
+    void merge(Node<T> *&second){
         if (head == nullptr) {
             head = second;
             return ;
@@ -468,6 +468,7 @@ class LinkedList {
             last->next = second;
         }
 
+        second = nullptr;
         head = third;
         return;
     }
@@ -572,7 +573,8 @@ int main () {
     // 3
         cout << endl << "3." << endl;
     cout << "Maximum element is : " << ll.maximum() << ", ";                                                                // O(n)
-    cout << ll.rMaximum(ll.getHead()->data, ll.getHead()) << endl;                                                          // O(n)
+    if (ll.getHead() != nullptr) cout << ll.rMaximum(ll.getHead()->data, ll.getHead()) << endl;                             // O(n)
+    else cout << "List is empty" << endl;
 
 
     // 4
@@ -608,14 +610,14 @@ int main () {
 
     // 7
         cout << endl << "7." << endl;
-    cout << "Is the linked list sorted? " << (ll.isShorted() ? "Yes" : "No") << ", ";                                       // O(n)
-    cout << (ll.rIsShorted(ll.getHead()) ? "Yes" : "No") << endl;
+    cout << "Is the linked list sorted? " << (ll.isSorted() ? "Yes" : "No") << ", ";                                       // O(n)
+    cout << (ll.rIsSorted(ll.getHead()) ? "Yes" : "No") << endl;
 
 
     // 8
         cout << endl << "8." << endl;
-    ll2.insertInShorted(new Node<int>(25));
-    ll2.insertInShorted(new Node<int>(30));                                                                                 // O(n)
+    ll2.insertInSorted(new Node<int>(25));
+    ll2.insertInSorted(new Node<int>(30));                                                                                 // O(n)
     ll2.display(); // Display list to prove 25 inserted correctly
 
 
@@ -677,7 +679,7 @@ int main () {
         cout << endl << "Challenge 2." << endl;
     int arr4[] = {5, 10, 15, 20, 25};
     int size4 = sizeof(arr4)/sizeof(int);
-    LinkedList<int> ll4 = LinkedList<int>::createFromArray(arr4, size4);   
+    LinkedList<int> ll4 = LinkedList<int>::createFromArray(arr4, size4);
     Node<int> * intersectionNode = ll.Intersection(&ll4);
     cout << "Intersecting element is : " << (intersectionNode ? to_string(intersectionNode->data) : "No intersection") << endl; // Display intersecting element.         // O(n)
 

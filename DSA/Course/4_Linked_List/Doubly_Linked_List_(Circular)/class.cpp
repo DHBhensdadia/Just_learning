@@ -83,6 +83,10 @@ class CircularDoublyLL {
 
     // 2. Insertion
     void insertAtIndex(Node<T> *node, int index) {
+        if (index < 0) {
+            delete node;
+            return;
+        }
         // case 1 : empty list
         if (head == nullptr) {
             head = node;

@@ -126,7 +126,7 @@ public :
     }
     // recursive
     void rInsert (T data) {
-        ri(root, data);
+        root = ri(root, data);
     }
     Node<T> *ri (Node<T> * u, T data) {
 
@@ -154,7 +154,7 @@ public :
     // Deletion
     // recursive delete
     void delete_(T data) {
-        rDelete(root, data);
+        root = rDelete(root, data);
     }
     Node<T>* rDelete(Node<T>* p, T key) {
         Node<T>* q;
@@ -164,9 +164,6 @@ public :
 
         // leaf node condition
         if (p->left == nullptr && p->right == nullptr) {
-            if (p == root) {
-                root = nullptr;
-            }
             delete p;
             return nullptr;
         }
@@ -180,7 +177,7 @@ public :
         }
         else {
             // Node found, replace with inorder predecessor or successor based on height
-            if (hight(p->left) > hight(p->right)) {
+            if (height(p->left) > height(p->right)) {
                 q = inPre(p->left);
                 p->data = q->data;
                 p->left = rDelete(p->left, q->data);
@@ -209,12 +206,12 @@ public :
         return p;
     }
 
-    // Hight
-    int hight(Node<T>* u) {
+    // Height
+    int height(Node<T>* u) {
         if (u == nullptr) { return 0; }
 
-        int x = hight(u->left);
-        int y = hight(u->right);
+        int x = height(u->left);
+        int y = height(u->right);
 
         return (x > y) ? x + 1 : y + 1;
     }
@@ -254,14 +251,12 @@ public :
                 s.emplace(p);
                 p = p->left;
             } else {
-                if(s.empty() || pre[i] < s.top()->data) {
-                    p->right = new Node<T>(pre[i]);
-                    p = p->right;
-                } else {
+                while(!s.empty() && s.top()->data < pre[i]) {
                     p = s.top();
                     s.pop();
-                    p->right = new Node<T>(pre[i]);
                 }
+                p->right = new Node<T>(pre[i]);
+                p = p->right; 
             }
         }
     }
