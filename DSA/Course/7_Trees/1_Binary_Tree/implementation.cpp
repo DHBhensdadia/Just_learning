@@ -200,7 +200,7 @@ public :
         if (root == nullptr) { return; }
 
         Node<T> * t = root;
-        Node<T> * last_visited;
+        Node<T> * last_visited = nullptr;
         stack<Node<T> *> nps;
 
         while (t != nullptr || !nps.empty()) {
@@ -309,8 +309,8 @@ public :
     int ntd (Node<T> * u) {
         if (u == nullptr) { return 0; }
 
-        T x = ntd(u->left);
-        T y = ntd(u->right);
+        int x = ntd(u->left);
+        int y = ntd(u->right);
 
         if ((u->left != nullptr) && (u->right != nullptr)) {
             return x + y + 1;
@@ -329,13 +329,13 @@ public :
         return x + y;
     }
 
-    // 7 : hight
-    int hight() { return hight(root); }
-    int hight (Node<T> * u) {
+    // 7 : height
+    int height() { return height(root); }
+    int height (Node<T> * u) {
         if (u == nullptr) { return 0; }
 
-        int x = hight(u->left);
-        int y = hight(u->right);
+        int x = height(u->left);
+        int y = height(u->right);
 
         if (x > y) { return x+1; }
         else       { return y+1; }
@@ -415,7 +415,7 @@ int main () {
     cout << "Count : " << t.noNullptr() << endl;
 
     cout << "\n7 : Height of Tree" << endl;
-    cout << "Hight : " << t.hight() << endl;
+    cout << "Height : " << t.height() << endl;
 
 
 

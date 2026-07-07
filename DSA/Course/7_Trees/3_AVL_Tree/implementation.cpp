@@ -44,8 +44,8 @@ public :
     // Declaration of all methods
 
     // 1. Display
-    void iInrder ();
-    void rInoder ();
+    void iInorder (); // Fix: Typo iInorder
+    void rInorder (); // Fix: Typo rInorder
     void ri(Node<T> * u);
 
     // 2. Search
@@ -83,7 +83,7 @@ public :
     // 1. Display - Inorder - traversal
     // itrative
     template<typename T>
-    void AVL<T>::iInrder () {
+    void AVL<T>::iInorder () {
         auto p = root;
         stack<Node<T> *> s;
 
@@ -101,7 +101,7 @@ public :
     }
     // recursive
     template<typename T>
-    void AVL<T>::rInoder () {
+    void AVL<T>::rInorder () {
         ri(root);
     }
     template<typename T>
@@ -125,7 +125,12 @@ public :
             return true;
         }
 
-        return search(u->left, data) || search(u->right, data);
+        // Fix: Use BST property to achieve O(log N) search instead of O(N)
+        if (data < u->data) {
+            return search(u->left, data);
+        } else {
+            return search(u->right, data);
+        }
     }
 
 
@@ -310,9 +315,7 @@ public :
 
         // special case
         if (e ->left == nullptr && e->right == nullptr) {
-            if (e == root) {
-                root = nullptr;
-            }
+            // Fix: No longer need the (e == root) hack since delete_ updates root!
             delete e;
             return nullptr;
         }
@@ -322,7 +325,11 @@ public :
         } else if (data > e->data) {
             e->right = rd_ (e->right, data);
         } else {
-            if (e->left->hight > e->right->hight) {
+            // Fix: Safely fetch heights to avoid Segmentation Fault on nullptr!
+            int hl = (e->left != nullptr) ? e->left->hight : 0;
+            int hr = (e->right != nullptr) ? e->right->hight : 0;
+            
+            if (hl > hr) {
                 Node<T> *in_pre = inpre(e);
                 e->data = in_pre->data;
                 e->left = rd_(e->left, in_pre->data);
@@ -405,11 +412,11 @@ int main (){
     vector<int> v = {10, 20, 30, 25, 28, 27,5};
     tree.create(v);
 
-    tree.rInoder(); cout << endl;
+    tree.rInorder(); cout << endl;
 
     tree.delete_(28);
 
-    tree.rInoder(); cout << endl;
+    tree.rInorder(); cout << endl;
 
     return 0;
 

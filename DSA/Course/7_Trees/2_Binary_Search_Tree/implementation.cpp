@@ -126,7 +126,8 @@ public :
     }
     // recursive
     void rInsert (T data) {
-        ri(root, data);
+        // Fix: Assign the result back to root so we don't leak memory on an empty tree
+        root = ri(root, data);
     }
     Node<T> *ri (Node<T> * u, T data) {
 
@@ -154,7 +155,8 @@ public :
     // Deletion
     // recursive delete
     void delete_(T data) {
-        rDelete(root, data);
+        // Fix: Assign the result back to root so it updates if the root is deleted
+        root = rDelete(root, data);
     }
     Node<T>* rDelete(Node<T>* p, T key) {
         Node<T>* q;
@@ -164,9 +166,7 @@ public :
 
         // leaf node condition
         if (p->left == nullptr && p->right == nullptr) {
-            if (p == root) {
-                root = nullptr;
-            }
+            // Fix: No longer need the (p == root) hack here!
             delete p;
             return nullptr;
         }
@@ -180,7 +180,7 @@ public :
         }
         else {
             // Node found, replace with inorder predecessor or successor based on height
-            if (hight(p->left) > hight(p->right)) {
+            if (height(p->left) > height(p->right)) {
                 q = inPre(p->left);
                 p->data = q->data;
                 p->left = rDelete(p->left, q->data);
@@ -209,12 +209,12 @@ public :
         return p;
     }
 
-    // Hight
-    int hight(Node<T>* u) {
+    // Height
+    int height(Node<T>* u) {
         if (u == nullptr) { return 0; }
 
-        int x = hight(u->left);
-        int y = hight(u->right);
+        int x = height(u->left);
+        int y = height(u->right);
 
         return (x > y) ? x + 1 : y + 1;
     }
@@ -254,14 +254,16 @@ public :
                 s.emplace(p);
                 p = p->left;
             } else {
-                if(s.empty() || pre[i] < s.top()->data) {
-                    p->right = new Node<T>(pre[i]);
-                    p = p->right;
-                } else {
+                // Fix: Keep popping from the stack as long as the stack top is smaller than pre[i].
+                // This ensures we climb back up the tree to find the correct ancestor.
+                while(!s.empty() && s.top()->data < pre[i]) {
                     p = s.top();
                     s.pop();
-                    p->right = new Node<T>(pre[i]);
                 }
+                // Once we find the correct ancestor, attach pre[i] as its right child
+                p->right = new Node<T>(pre[i]);
+                // Fix: Move the pointer forward so subsequent nodes attach to this new node!
+                p = p->right; 
             }
         }
     }
